@@ -5,17 +5,16 @@ spring:
     active: dev
 
 
+
 server:
-  port: 8074
-  servlet:
-    context-path: /ai-service/api/v1
+  port: 8072
 
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:8090/eureka-server/api/v1/eureka
+      defaultZone: http://localhost:8090/eureka
     registry-fetch-interval-seconds: 5
   instance:
     lease-renewal-interval-in-seconds: 10      # send heartbeat every 10 seconds
