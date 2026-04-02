@@ -14,7 +14,7 @@ public class MongoConfig {
 
     @Bean
     public BeforeConvertCallback<Recommendation> activityBeforeConvertCallback() {
-        return (activity, collection) -> {
+        return (activity, _) -> {
             if (activity.getId() == null) {
                 activity.setId(UUID.randomUUID().toString());
             }
