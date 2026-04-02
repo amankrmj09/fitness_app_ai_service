@@ -4,8 +4,8 @@ spring:
       host: localhost
       port: 27017
       database: ai_service_db
-      username:
-      password:
+      username: ai_service_db_admin
+      password: ai_service_db_admin_123
 
 
 #feign:
