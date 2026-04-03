@@ -19,12 +19,21 @@ repositories {
 }
 
 extra["springCloudVersion"] = "2025.0.1"
+val springAiVersion by extra("1.1.4")
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
     implementation("org.springframework.boot:spring-boot-starter-validation")
+    
+    implementation("org.springframework.kafka:spring-kafka")
+    implementation("org.springframework.ai:spring-ai-starter-model-google-genai")
+    testImplementation("org.springframework.kafka:spring-kafka-test")
+    
+    
+//    implementation("org.springframework.boot:spring-boot-starter-webflux")
+//    testImplementation("io.projectreactor:reactor-test")
     
     
     compileOnly("org.projectlombok:lombok")
@@ -42,6 +51,7 @@ dependencies {
 dependencyManagement {
     imports {
         mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+        mavenBom("org.springframework.ai:spring-ai-bom:$springAiVersion")
     }
 }
 
