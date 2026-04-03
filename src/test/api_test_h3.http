@@ -1,0 +1,98 @@
+### Create an activity
+POST http://localhost:8071/api/v1/activities/create
+Content-Type: application/json
+
+{
+  "additionalMetrics": {
+    "calories": 350
+  },
+  "description": "Heavy GYM workout in the morning",
+  "duration": 100,
+  "name": "Morning Gym",
+  "type": "GYM_WORKOUT",
+  "userId": "deec9940-a596-45d4-a8af-d968f3fef875"
+}
+
+> {%
+    client.test("Status is 201 Created", function() {
+        client.assert(response.status === 201, "Expected 201 but got " + response.status);
+    });
+
+    client.test("Response has activity name", function() {
+        client.assert(response.body.name === "Morning Gym", "Activity name mismatch");
+    });
+
+    // ✅ Capture and store the activity ID from the response
+    client.global.set("activityId", response.body.id);
+%}
+
+
+### Get recommendation by activity ID
+@activityId2 = 4fb73245-1f72-46a1-bf71-5728b55c0992
+GET http://localhost:8072/api/v1/recommendations/activity/{{activityId2}}
+
+
+### Create a GYM activity
+POST http://localhost:8071/api/v1/activities/create
+Content-Type: application/json
+
+{
+  "additionalMetrics": {
+    "calories": 350
+  },
+  "description": "Heavy GYM workout in the morning",
+  "duration": 100,
+  "name": "Morning Gym",
+  "type": "GYM_WORKOUT",
+  "userId": "deec9940-a596-45d4-a8af-d968f3fef875"
+}
+
+> {%
+    client.test("Status is 201 Created", function() {
+        client.assert(response.status === 201, "Expected 201 but got " + response.status);
+    });
+    client.test("Response has activity name", function() {
+        client.assert(response.body.name === "Morning Gym", "Activity name mismatch");
+    });
+    client.global.set("activityId", response.body.id);
+%}
+
+
+### Create a RUNNING activity
+POST http://localhost:8071/api/v1/activities/create
+Content-Type: application/json
+
+{
+  "additionalMetrics": {
+    "distanceKm": 8.5,
+    "avgPaceMinPerKm": 5.2,
+    "avgHeartRate": 158,
+    "maxHeartRate": 175,
+    "elevationGainMeters": 120
+  },
+  "description": "Evening outdoor run in the park",
+  "duration": 45,
+  "name": "Evening Run",
+  "type": "RUNNING",
+  "userId": "deec9940-a596-45d4-a8af-d968f3fef875"
+}
+
+> {%
+    client.test("Status is 201 Created", function() {
+        client.assert(response.status === 201, "Expected 201 but got " + response.status);
+    });
+    client.test("Response has activity name", function() {
+        client.assert(response.body.name === "Evening Run", "Activity name mismatch");
+    });
+    client.global.set("runningActivityId", response.body.id);
+%}
+
+
+### Get recommendation for GYM activity
+GET http://localhost:8072/api/v1/recommendations/activity/{{activityId}}
+
+### Get recommendation for RUNNING activity
+GET http://localhost:8072/api/v1/recommendations/activity/{{runningActivityId}}
+
+### Get all recommendations for user
+GET http://localhost:8072/api/v1/recommendations/user/deec9940-a596-45d4-a8af-d968f3fef875
