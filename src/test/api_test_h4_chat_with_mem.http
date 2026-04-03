@@ -1,0 +1,26 @@
+### Start a conversation
+POST http://localhost:8072/api/v1/recommendations/chat
+Content-Type: application/json
+
+{
+  "conversationId": "user-deec9940-session-1",
+  "message": "I just completed a 100 minute gym workout and burned 350 calories. What do you think?"
+}
+
+### Follow-up in same conversation (memory retained)
+POST http://localhost:8072/api/v1/recommendations/chat
+Content-Type: application/json
+
+{
+  "conversationId": "user-deec9940-session-1",
+  "message": "What specific exercises should I do next time to burn more calories?"
+}
+
+### New conversation (fresh memory)
+POST http://localhost:8072/api/v1/recommendations/chat
+Content-Type: application/json
+
+{
+  "conversationId": "user-deec9940-session-1",
+  "message": "can you give it in brief"
+}
