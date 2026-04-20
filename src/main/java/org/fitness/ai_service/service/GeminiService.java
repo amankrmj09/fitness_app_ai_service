@@ -6,12 +6,12 @@ import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GeminiChatService {
+public class GeminiService {
 
     private final ChatClient chatClient;
     private final ChatClient chatClientWithMemory;
 
-    public GeminiChatService(ChatClient.Builder builder, ChatMemory chatMemory) {
+    public GeminiService(ChatClient.Builder builder, ChatMemory chatMemory) {
 
         // without memory — stateless, each call is independent
         this.chatClient = builder.build();
