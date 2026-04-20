@@ -16,11 +16,11 @@ import java.util.*;
 @RequiredArgsConstructor
 public class ActivityAiService {
 
-    private final GeminiChatService geminiChatService;
+    private final GeminiService geminiService;
 
     public Recommendation generateRecommendation(Activity activity) {
         String prompt = createPromptForActivity(activity);
-        String aiResponse = geminiChatService.getRecommendation(prompt);
+        String aiResponse = geminiService.getRecommendation(prompt);
         log.info("RESPONSE FROM AI: {}", aiResponse);
         return processAiResponse(activity, aiResponse);
     }
