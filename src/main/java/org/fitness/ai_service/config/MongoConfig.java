@@ -14,11 +14,11 @@ public class MongoConfig {
 
     @Bean
     public BeforeConvertCallback<Recommendation> activityBeforeConvertCallback() {
-        return (activity, _) -> {
-            if (activity.getId() == null) {
-                activity.setId(UUID.randomUUID().toString());
+        return (recommendation, _) -> {
+            if (recommendation.getId() == null) {
+                recommendation.setId(UUID.randomUUID().toString());
             }
-            return activity;
+            return recommendation;
         };
     }
 }

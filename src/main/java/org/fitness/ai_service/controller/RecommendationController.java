@@ -3,7 +3,7 @@ package org.fitness.ai_service.controller;
 import lombok.RequiredArgsConstructor;
 import org.fitness.ai_service.model.dto.ChatRequestDTO;
 import org.fitness.ai_service.model.entity.Recommendation;
-import org.fitness.ai_service.service.GeminiChatService;
+import org.fitness.ai_service.service.GeminiService;
 import org.fitness.ai_service.service.RecommendationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ import java.util.List;
 public class RecommendationController {
 
     private final RecommendationService recommendationService;
-    private final GeminiChatService geminiChatService;
+    private final GeminiService geminiService;
 
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<Recommendation>> getUserRecommendations(@PathVariable String userId) {
@@ -36,7 +36,7 @@ public class RecommendationController {
     // ─── Chat with Memory ─────────────────────────────────────────────
     @PostMapping("/chat")
     public ResponseEntity<String> chat(@RequestBody ChatRequestDTO request) {
-        String response = geminiChatService.chatWithMemory(
+        String response = geminiService.chatWithMemory(
                 request.getConversationId(),
                 request.getMessage()
         );
